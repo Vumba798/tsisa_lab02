@@ -34,12 +34,12 @@ RandomSearcher::RandomSearcher(const float &a, const float& b) {
         _pVec.emplace_back(i);
     }
     for (size_t i = 0; i < _qVec.size(); ++i){
-        std::vector<uint16_t> tmpNvec;
+        // these tmp vectors are lines in the vector of the second order
+        std::vector<uint16_t> tmpNvec; 
         std::vector<float> tmpUnomodalYvec;
         std::vector<float> tmpMultiModalYvec;
+
         for (size_t j = 0; j < _pVec.size(); ++j) {
-            std::vector<float> multiModalX;
-            std::vector<float> unoModalX;
             tmpNvec.emplace_back(_calculate_N(_pVec[j], _qVec[i]));
             tmpUnomodalYvec.emplace_back(_search(tmpNvec.back(), _uno_modal_func));
             tmpMultiModalYvec.emplace_back(_search(tmpNvec.back(), _multi_modal_func));
